@@ -16,9 +16,14 @@ function initialiser()
   console.log('afficherChansons()');
 }
 
-function choisirChanson()
+function choisirChanson(evenement)
 {
-    console.log('clic chanson');
+    console.log(evenement);
+    li = evenement.srcElement;
+    chanson = li.innerHTML;
+    console.log('clic chanson ' + chanson);
+    
+    document.querySelector("#chanson-choisie").innerHTML = chanson;
 }
 
 
