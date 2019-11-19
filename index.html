@@ -21,15 +21,19 @@
         margin-bottom:20px;
         padding: 10px;
     }
+    #boite-selecteur-heure input
+    {
+        font-size:4em;
+    }
     </style>
   </head>
   <body>
     <h1>Réveille-Matin!</h1>
     
     
-    <div id="boite-liste-chansons">
+    <div id="boite-selecteur-chansons">
     
-        <h3>Liste des chansons</h3>
+        <h3>Choix de chansons</h3>
         <ul id="liste-chansons">
             
         </ul>
@@ -47,6 +51,14 @@
         <source src="musique/coq.wav" type="audio/wav">
     </audio>
 
+    
+    <div id="boite-selecteur-heure">
+    
+        <h3>Choix de l'heure</h3>
+        <input type="time">
+    
+    </div>
+    
     
     <script src="./vue.js"></script>
     

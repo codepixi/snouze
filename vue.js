@@ -11,9 +11,22 @@ var afficheur = require('electron').ipcRenderer;
 
 function initialiser()
 {
-  var titreDesChansons = document.querySelector('#boite-liste-chansons > h3');
+  var titreDesChansons = document.querySelector('#boite-selecteur-chansons > h3');
   titreDesChansons.innerHTML - 'Liste des chansons';
   console.log('afficherChansons()');
+  initialiserHeure();
+}
+
+function initialiserHeure()
+{
+    
+    var aujourdhui = new Date();
+    var heure = aujourdhui.getHours(); 
+    if(heure < 10) heure = '0' + heure;
+    var minute = aujourdhui.getMinutes(); 
+    if(minute < 10) minute = '0' + minute;
+    document.querySelector('#boite-selecteur-heure > input').value = heure + ':' + minute; // https://www.w3schools.com/jsref/prop_input_time_value.asp
+    console.log(heure + ':'+minute);
 }
 
 function choisirChanson(evenement)
