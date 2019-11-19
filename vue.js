@@ -24,6 +24,9 @@ function choisirChanson(evenement)
     console.log('clic chanson ' + chanson);
     
     document.querySelector("#chanson-choisie").innerHTML = chanson;
+    document.querySelector("audio > source").src = 'musique/' + chanson;
+    document.querySelector("audio").load();
+    console.log(document.querySelector("audio > source"));
 }
 
 
@@ -44,6 +47,5 @@ afficheur.on('afficher-chansons', (evenement, chansons) =>
     {
         vueChanson.onclick = choisirChanson;
     }
-
 } );
 
