@@ -18,3 +18,18 @@ function creerFenetre ()
 
 app.on('ready', creerFenetre) // Some APIs can only be used after this event occurs.
 
+
+// https://freesound.org/people/BenjaminNelan/sounds/435508/ - Rooster Sounds » Rooster Crow 1
+// https://freesound.org/people/ecfike/sounds/135127/ - Fiddlin' Around » Arkansas Traveler.wav
+// https://freesound.org/people/Tomlija/sounds/110334/ - music_recording_excerpts » Traditional Eastern instrument Sargija - improvisation played by Boris Todorovic.aif
+// https://freesound.org/people/RafaelCaro/sounds/336565/ - Tocs de gralla » Toc de matinades (2)
+function listerChansons()
+{
+    const listeChansons = fs.readdirSync('musique');
+    console.log(listeChansons);
+    return listeChansons;
+}
+
+app.on('ready', listerChansons) 
+
+
