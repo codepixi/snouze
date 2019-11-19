@@ -45,15 +45,19 @@ function listerChansons()
 // https://www.npmjs.com/package/node-schedule
 var planificateur = require('node-schedule');
  
-var tache = planificateur.scheduleJob('* * * * *', function(){
-  console.log('The answer to life, the universe, and everything!');
-});
-
 
 // https://www.brainbell.com/javascript/ipc-communication.html
 messager = electron.ipcMain;
-messager.on('choisir-heure', (evenement, para) => 
+var tache;
+messager.on('choisir-heure', (evenement, temps) => 
 {
-  console.log('choisir-heure ' + para);
+    console.log('choisir-heure ' + temps);
+    if(tache) tache.cancel();
+    
+    temps = temps.split(':');
+    heure = temps[0];
+    minute = temps[1];
+    tache = planificateur.scheduleJob(minute + ' ' + heure + ' * * *', function(){ console.log('Reveille-matin'); });
+
  //evenement.returnValue = '';
 });
