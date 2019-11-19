@@ -7,11 +7,22 @@
 
 // const app = require('electron').remote.require('./app') 
 
+var afficheur = require('electron').ipcRenderer;
+
 function afficherChansons()
 {
-  var vueListeChansons = document.getElementById('liste-chansons');  
-  vueListeChansons.innerHTML = '<li>Test une chanson</li>';  
   var titreDesChansons = document.querySelector('#boite-liste-chansons > h3');
   titreDesChansons.innerHTML - 'Liste des chansons';
+  console.log('afficherChansons()');
 }
 
+afficheur.on('afficher-chansons', (evenement, chansons) => 
+{
+  var vueListeChansons = document.getElementById('liste-chansons');  
+    console.log('afficher-chansons');
+    console.log(chansons);
+    for(chanson of chansons)
+    {
+        vueListeChansons.innerHTML += '<li>'+chanson+'</li>'
+    }
+} );

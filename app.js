@@ -11,12 +11,12 @@ let affichage;
 
 function creerFenetre () 
 {
-    fenetre = new electron.BrowserWindow({ width: 800,height: 600, frame:false,  webPreferences: {nodeIntegration: true}  }) // https://stackoverflow.com/questions/44391448/electron-require-is-not-defined // https://electronjs.org/docs/api/remote
+    fenetre = new electron.BrowserWindow({ width: 800,height: 600, frame:true,  webPreferences: {nodeIntegration: true}  }) // https://stackoverflow.com/questions/44391448/electron-require-is-not-defined // https://electronjs.org/docs/api/remote
     fenetre.loadFile('index.html')
     fenetre.webContents.openDevTools()
     fenetre.on('closed', function () { fenetre = null })
     affichage = fenetre.webContents    // https://electronjs.org/docs/api/web-contents#contentsexecutejavascriptcode-usergesture
-    listerChansons();
+    affichage.on('did-finish-load', () => { listerChansons();})
 }
 
 app.on('ready', creerFenetre) // Some APIs can only be used after this event occurs.
@@ -32,8 +32,9 @@ function listerChansons()
 {
     const listeChansons = fs.readdirSync('musique');
     console.log(listeChansons);
-    affichage.executeJavaScript('afficherChansons()', true);
-    return listeChansons;
+    affichage.send('afficher-chansons', listeChansons); // https://stackoverflow.com/questions/36773711/passing-data-to-windows-in-electron
+    //affichage.executeJavaScript('afficherChansons()', true);
+    //return listeChansons;
 }
 
 
