@@ -11,7 +11,8 @@ let affichage;
 
 function creerFenetre () 
 {
-    fenetre = new electron.BrowserWindow({ width: 800,height: 600, frame:true,  webPreferences: {nodeIntegration: true}  }) // https://stackoverflow.com/questions/44391448/electron-require-is-not-defined // https://electronjs.org/docs/api/remote
+    app.commandLine.appendSwitch("autoplay-policy", "no-user-gesture-required")
+    fenetre = new electron.BrowserWindow({ width: 800,height: 600, frame:true, webSecurity: false, webPreferences: {nodeIntegration: true}  }) // https://stackoverflow.com/questions/44391448/electron-require-is-not-defined // https://electronjs.org/docs/api/remote
     fenetre.loadFile('index.html')
     fenetre.webContents.openDevTools()
     fenetre.on('closed', function () { fenetre = null })

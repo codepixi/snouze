@@ -26,3 +26,4 @@ afficheur.on('afficher-chansons', (evenement, chansons) =>
         vueListeChansons.innerHTML += '<li>'+chanson+'</li>'
     }
 } );
+
