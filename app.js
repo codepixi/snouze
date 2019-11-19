@@ -57,7 +57,7 @@ messager.on('choisir-heure', (evenement, temps) =>
     temps = temps.split(':');
     heure = temps[0];
     minute = temps[1];
-    tache = planificateur.scheduleJob(minute + ' ' + heure + ' * * *', function(){ console.log('Reveille-matin'); });
+    tache = planificateur.scheduleJob(minute + ' ' + heure + ' * * *', function(){ console.log('Reveille-matin'); affichage.send('jouer-chanson', ''); });
 
  //evenement.returnValue = '';
 });

@@ -73,3 +73,8 @@ afficheur.on('afficher-chansons', (evenement, chansons) =>
     }
 } );
 
+afficheur.on('jouer-chanson', (evenement, vide) => 
+{
+    document.querySelector("audio").play();
+    
+} );
