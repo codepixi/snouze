@@ -5,6 +5,22 @@
     <title>Hello World!</title>
     <style>
     body {background-color:#aad7d7; color:white;}
+    #liste-chansons li
+    {
+        display:block;
+        background-color:#cdffcd;
+        margin-bottom:4px;
+        color:#333333;
+        font-weight:bold;
+        cursor:pointer;
+    }
+    
+    #chanson-selectionnee
+    {
+        background-color:orange;
+        margin-bottom:20px;
+        padding: 10px;
+    }
     </style>
   </head>
   <body>
@@ -20,7 +36,14 @@
     
     </div>
 
-    <audio controls autoplay>
+    <div id="boite-chanson-choisie">
+        <h3>Chanson choisie</h3>
+        <div id="chanson-selectionnee">
+            &nbsp;
+        </div>
+    </div>
+
+    <audio controls><--autoplay-->
         <source src="musique/coq.wav" type="audio/wav">
     </audio>
 

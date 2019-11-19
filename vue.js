@@ -9,12 +9,19 @@
 
 var afficheur = require('electron').ipcRenderer;
 
-function afficherChansons()
+function initialiser()
 {
   var titreDesChansons = document.querySelector('#boite-liste-chansons > h3');
   titreDesChansons.innerHTML - 'Liste des chansons';
   console.log('afficherChansons()');
 }
+
+function choisirChanson()
+{
+    console.log('clic chanson');
+}
+
+
 
 afficheur.on('afficher-chansons', (evenement, chansons) => 
 {
@@ -25,5 +32,13 @@ afficheur.on('afficher-chansons', (evenement, chansons) =>
     {
         vueListeChansons.innerHTML += '<li>'+chanson+'</li>'
     }
+    
+  var vuesChansons = document.getElementById('liste-chansons').getElementsByTagName('li');  
+    console.log(vuesChansons);
+    for(vueChanson of vuesChansons)
+    {
+        vueChanson.onclick = choisirChanson;
+    }
+
 } );
 

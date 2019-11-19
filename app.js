@@ -37,8 +37,8 @@ function listerChansons()
 {
     const listeChansons = fs.readdirSync('musique');
     console.log(listeChansons);
+    affichage.executeJavaScript('initialiser()', true);
     affichage.send('afficher-chansons', listeChansons); // https://stackoverflow.com/questions/36773711/passing-data-to-windows-in-electron
-    //affichage.executeJavaScript('afficherChansons()', true);
     //return listeChansons;
 }
 
