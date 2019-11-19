@@ -16,7 +16,7 @@ function creerFenetre ()
     fenetre.webContents.openDevTools()
     fenetre.on('closed', function () { fenetre = null })
     affichage = fenetre.webContents    // https://electronjs.org/docs/api/web-contents#contentsexecutejavascriptcode-usergesture
-    affichage.on('did-finish-load', () => { listerChansons();})
+    affichage.on('did-finish-load', () => { initialiser();})
 }
 
 app.on('ready', creerFenetre) // Some APIs can only be used after this event occurs.
@@ -27,6 +27,10 @@ app.on('ready', creerFenetre) // Some APIs can only be used after this event occ
 // https://freesound.org/people/Tomlija/sounds/110334/ - music_recording_excerpts » Traditional Eastern instrument Sargija - improvisation played by Boris Todorovic.aif
 // https://freesound.org/people/RafaelCaro/sounds/336565/ - Tocs de gralla » Toc de matinades (2)
 
+function initialiser()
+{
+    listerChansons();
+}
 
 function listerChansons()
 {
