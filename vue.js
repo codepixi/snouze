@@ -8,6 +8,8 @@
 // const app = require('electron').remote.require('./app') 
 
 var afficheur = require('electron').ipcRenderer;
+var messager = afficheur;
+// https://www.brainbell.com/javascript/ipc-communication.html
 
 function initialiser()
 {
@@ -15,6 +17,14 @@ function initialiser()
   titreDesChansons.innerHTML - 'Liste des chansons';
   console.log('afficherChansons()');
   initialiserHeure();
+}
+
+function choisirHeure(evenement)
+{
+    document.querySelector('#heure-choisie').innerHTML = evenement.srcElement.value;    
+    
+    messager.send('choisir-heure',evenement.srcElement.value, 10);
+    
 }
 
 function initialiserHeure()
@@ -27,6 +37,9 @@ function initialiserHeure()
     if(minute < 10) minute = '0' + minute;
     document.querySelector('#boite-selecteur-heure > input').value = heure + ':' + minute; // https://www.w3schools.com/jsref/prop_input_time_value.asp
     console.log(heure + ':'+minute);
+    
+    document.querySelector('#boite-selecteur-heure > input').onchange = choisirHeure;
+    
 }
 
 function choisirChanson(evenement)
@@ -42,8 +55,6 @@ function choisirChanson(evenement)
     console.log(document.querySelector("audio > source"));
 }
 
-
-
 afficheur.on('afficher-chansons', (evenement, chansons) => 
 {
   var vueListeChansons = document.getElementById('liste-chansons');  
@@ -54,7 +65,7 @@ afficheur.on('afficher-chansons', (evenement, chansons) =>
         vueListeChansons.innerHTML += '<li>'+chanson+'</li>'
     }
     
-  var vuesChansons = document.getElementById('liste-chansons').getElementsByTagName('li');  
+    var vuesChansons = document.getElementById('liste-chansons').getElementsByTagName('li');  
     console.log(vuesChansons);
     for(vueChanson of vuesChansons)
     {

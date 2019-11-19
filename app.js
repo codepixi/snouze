@@ -12,7 +12,7 @@ let affichage;
 function creerFenetre () 
 {
     app.commandLine.appendSwitch("autoplay-policy", "no-user-gesture-required")
-    fenetre = new electron.BrowserWindow({ width: 800,height: 600, frame:true, webSecurity: false, webPreferences: {nodeIntegration: true}  }) // https://stackoverflow.com/questions/44391448/electron-require-is-not-defined // https://electronjs.org/docs/api/remote
+    fenetre = new electron.BrowserWindow({ width: 800,height: 800, frame:true, webSecurity: false, webPreferences: {nodeIntegration: true}  }) // https://stackoverflow.com/questions/44391448/electron-require-is-not-defined // https://electronjs.org/docs/api/remote
     fenetre.loadFile('index.html')
     fenetre.webContents.openDevTools()
     fenetre.on('closed', function () { fenetre = null })
@@ -42,4 +42,18 @@ function listerChansons()
     //return listeChansons;
 }
 
+// https://www.npmjs.com/package/node-schedule
+var planificateur = require('node-schedule');
+ 
+var tache = planificateur.scheduleJob('* * * * *', function(){
+  console.log('The answer to life, the universe, and everything!');
+});
 
+
+// https://www.brainbell.com/javascript/ipc-communication.html
+messager = electron.ipcMain;
+messager.on('choisir-heure', (evenement, para) => 
+{
+  console.log('choisir-heure ' + para);
+ //evenement.returnValue = '';
+});
